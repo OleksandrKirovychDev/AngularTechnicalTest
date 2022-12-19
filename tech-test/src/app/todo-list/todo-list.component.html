@@ -1,4 +1,5 @@
 <div class="container">
+  <app-searchbar (update)="performSearch($event)"></app-searchbar>
   <app-todo-form
     [todo]="todo$"
     (AddTodo)="addTodo($event)"
@@ -8,6 +9,7 @@
     class="todo-list"
     (DeleteTodo)="deleteTodo($event)"
     (EditTodo)="selectTodo($event)"
+    (ChageStatus)="changeStatus($event)"
     [todosList]="todosList$ | async"
   ></app-list>
 </div>

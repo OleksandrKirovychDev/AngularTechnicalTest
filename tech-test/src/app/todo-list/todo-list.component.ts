@@ -1,9 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { select, Store } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import { Observable, pipe } from "rxjs";
 import { ITodo } from "../shared/models/todo.model";
 import * as TodosActions from "./state/actions/todos.action";
-import { selectTodos, selectTodo } from "./state/selectors/todos.selector";
+import {
+  selectTodos,
+  selectTodo,
+  selectSearchedTodos,
+} from "./state/selectors/todos.selector";
 @Component({
   selector: "app-todo-list",
   templateUrl: "./todo-list.component.html",
@@ -14,6 +18,7 @@ export class TodoListComponent implements OnInit {
   todosList$: Observable<ITodo[]>;
   todo$: Observable<ITodo>;
   todoToEdit: ITodo;
+
   ngOnInit(): void {
     this.getTodos();
     this.selectTodos();
@@ -41,5 +46,13 @@ export class TodoListComponent implements OnInit {
 
   editTodo(todo: ITodo): void {
     this.store.dispatch(TodosActions.editTodo({ todo: todo }));
+  }
+
+  changeStatus(todo: ITodo): void {
+    this.store.dispatch(TodosActions.changeTodoStatus({ todo: todo }));
+  }
+
+  performSearch(value: string): void {
+    this.todosList$ = this.store.select(selectSearchedTodos(value));
   }
 }

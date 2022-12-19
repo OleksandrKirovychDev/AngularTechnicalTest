@@ -9,6 +9,7 @@ import { ITodo } from "src/app/shared/models/todo.model";
 export class ListComponent {
   @Output() DeleteTodo = new EventEmitter<number>();
   @Output() EditTodo = new EventEmitter<number>();
+  @Output() ChageStatus = new EventEmitter<ITodo>();
 
   @Input() todosList: ITodo[];
   constructor() {}
@@ -19,5 +20,9 @@ export class ListComponent {
 
   onEditTodo(id: number) {
     this.EditTodo.emit(id);
+  }
+
+  changeStatus(todo: ITodo): void {
+    this.ChageStatus.emit(todo);
   }
 }

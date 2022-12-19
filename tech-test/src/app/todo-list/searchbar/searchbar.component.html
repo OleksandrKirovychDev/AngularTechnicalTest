@@ -1,0 +1,10 @@
+<mat-form-field appearance="outline">
+  <mat-label>Search Todo</mat-label>
+  <input
+    [(ngModel)]="search"
+    (input)="changeInput($event.target.value)"
+    matInput
+    placeholder="Placeholder"
+  />
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>

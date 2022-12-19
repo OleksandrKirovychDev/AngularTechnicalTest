@@ -14,4 +14,8 @@ export enum ActionTypes {
   EDIT = "[Todo] Edit",
   EDIT_SUCCESS = "[Todo] Edit success",
   EDIT_FAILURE = "[Todo] Edit failure",
+
+  CHANGE_STATUS = "[Todo] Change Status",
+  CHANGE_STATUS_SUCCESS = "[Todo] Change Status success",
+  CHANGE_STATUS_FAILURE = "[Todo] Change Status failure",
 }

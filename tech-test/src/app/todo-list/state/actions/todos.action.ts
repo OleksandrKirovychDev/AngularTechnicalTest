@@ -47,3 +47,16 @@ export const editTodosFailure = createAction(
   ActionTypes.EDIT_SUCCESS,
   props<{ msg: string }>()
 );
+
+export const changeTodoStatus = createAction(
+  ActionTypes.EDIT,
+  props<{ todo: ITodo }>()
+);
+export const changeTodoStatusSuccess = createAction(
+  ActionTypes.EDIT_SUCCESS,
+  props<{ todo: ITodo }>()
+);
+export const changeTodoStatusFailure = createAction(
+  ActionTypes.EDIT_SUCCESS,
+  props<{ msg: string }>()
+);

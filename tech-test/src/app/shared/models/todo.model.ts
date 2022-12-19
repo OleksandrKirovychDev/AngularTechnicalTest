@@ -3,7 +3,7 @@ export interface ITodo {
   label: string;
   description: string;
   category: string;
-  done: boolean | string;
+  done: boolean;
 }
 
 export interface ITodoState {

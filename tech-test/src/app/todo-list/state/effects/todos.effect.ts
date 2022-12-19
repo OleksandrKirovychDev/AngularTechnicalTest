@@ -57,6 +57,22 @@ export class TodosEffect {
     );
   });
 
+  changeStatus$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TodosActions.changeTodoStatus),
+      mergeMap(({ todo }) => {
+        return this.todosService.editTodo(todo).pipe(
+          map((todo) =>
+            TodosActions.changeTodoStatusSuccess({
+              todo: todo,
+            })
+          ),
+          catchError((msg) => of(TodosActions.changeTodoStatusFailure({ msg })))
+        );
+      })
+    );
+  });
+
   editTodo$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TodosActions.editTodo),
