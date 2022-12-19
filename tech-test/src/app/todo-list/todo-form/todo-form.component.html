@@ -1,0 +1,30 @@
+<form
+  class="form"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  class="example-form"
+>
+  <mat-form-field appearance="outline">
+    <mat-label>Label</mat-label>
+    <input
+      required
+      formControlName="label"
+      matInput
+      placeholder="Placeholder"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Category</mat-label>
+    <input
+      required
+      formControlName="category"
+      matInput
+      placeholder="Placeholder"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea required formControlName="description" matInput></textarea>
+  </mat-form-field>
+  <button type="submit" mat-button>ADD</button>
+</form>

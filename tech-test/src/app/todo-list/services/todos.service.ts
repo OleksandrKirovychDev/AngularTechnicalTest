@@ -12,5 +12,12 @@ export class TodosService<ITodo> {
   getTodos(): Observable<ITodo[]> {
     return this.http.get<ITodo[]>(`${environment.BASE_URL}`);
   }
-  
+
+  addTodo(todo: ITodo): Observable<ITodo> {
+    return this.http.post<ITodo>(`${environment.BASE_URL}`, todo);
+  }
+
+  deleteTodo(id: number): Observable<number> {
+    return this.http.delete<number>(`${environment.BASE_URL}/${id}`);
+  }
 }

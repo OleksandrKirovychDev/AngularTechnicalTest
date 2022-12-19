@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { StoreModule } from "@ngrx/store";
 import { TodoListModule } from "./todo-list/todo-list.module";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([]),
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent],

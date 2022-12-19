@@ -1,13 +1,13 @@
 export interface ITodo {
-  id: number;
+  id?: number;
   label: string;
   description: string;
   category: string;
-  done: boolean;
+  done: boolean | string;
 }
 
 export interface ITodoState {
-  todos: ITodo[];
+  todos: Array<ITodo>;
   isLoading: boolean;
   error: string;
 }
