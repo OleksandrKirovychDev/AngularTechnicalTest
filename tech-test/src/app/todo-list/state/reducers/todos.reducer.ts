@@ -51,5 +51,19 @@ export const todosReducers = createReducer(
   on(TodosActions.deleteTodosFailure, (state, { msg }) => ({
     ...state,
     error: msg,
+  })),
+  on(TodosActions.editTodo, (state, { todo }) => ({
+    ...state,
+    todos: [...state.todos.map((t) => (t.id !== todo.id ? t : todo))],
+    isLoading: true,
+  })),
+  on(TodosActions.editTodosSuccess, (state, { todo }) => ({
+    ...state,
+    todos: [...state.todos.map((t) => (t.id !== todo.id ? t : todo))],
+    isLoading: false,
+  })),
+  on(TodosActions.editTodosFailure, (state, { msg }) => ({
+    ...state,
+    error: msg,
   }))
 );

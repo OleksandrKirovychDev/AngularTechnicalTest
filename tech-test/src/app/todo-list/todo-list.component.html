@@ -1,8 +1,13 @@
 <div class="container">
-  <app-todo-form (AddTodo)="addTodo($event)"></app-todo-form>
+  <app-todo-form
+    [todo]="todo$"
+    (AddTodo)="addTodo($event)"
+    (EditTodo)="editTodo($event)"
+  ></app-todo-form>
   <app-list
-    (DeleteTodo)="deleteTodo($event)"
     class="todo-list"
+    (DeleteTodo)="deleteTodo($event)"
+    (EditTodo)="selectTodo($event)"
     [todosList]="todosList$ | async"
   ></app-list>
 </div>

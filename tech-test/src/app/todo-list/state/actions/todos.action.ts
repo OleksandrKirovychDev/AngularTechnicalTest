@@ -34,3 +34,16 @@ export const deleteTodosFailure = createAction(
   ActionTypes.DELETE_FAILURE,
   props<{ msg: string }>()
 );
+
+export const editTodo = createAction(
+  ActionTypes.EDIT,
+  props<{ todo: ITodo }>()
+);
+export const editTodosSuccess = createAction(
+  ActionTypes.EDIT_SUCCESS,
+  props<{ todo: ITodo }>()
+);
+export const editTodosFailure = createAction(
+  ActionTypes.EDIT_SUCCESS,
+  props<{ msg: string }>()
+);

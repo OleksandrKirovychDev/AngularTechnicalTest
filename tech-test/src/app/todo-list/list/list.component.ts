@@ -8,10 +8,16 @@ import { ITodo } from "src/app/shared/models/todo.model";
 })
 export class ListComponent {
   @Output() DeleteTodo = new EventEmitter<number>();
+  @Output() EditTodo = new EventEmitter<number>();
+
   @Input() todosList: ITodo[];
   constructor() {}
 
   onDeleteTodo(id: number): void {
     this.DeleteTodo.emit(id);
+  }
+
+  onEditTodo(id: number) {
+    this.EditTodo.emit(id);
   }
 }

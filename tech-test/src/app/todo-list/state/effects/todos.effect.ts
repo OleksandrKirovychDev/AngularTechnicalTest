@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, mergeMap, of } from "rxjs";
 import { ITodo } from "src/app/shared/models/todo.model";
@@ -46,12 +46,28 @@ export class TodosEffect {
       ofType(TodosActions.deleteTodo),
       mergeMap(({ id }) => {
         return this.todosService.deleteTodo(id).pipe(
-          map((id) =>
+          map((todo) =>
             TodosActions.deleteTodosSuccess({
-              id: id,
+              id: todo.id,
             })
           ),
           catchError((msg) => of(TodosActions.deleteTodosFailure({ msg })))
+        );
+      })
+    );
+  });
+
+  editTodo$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TodosActions.editTodo),
+      mergeMap(({ todo }) => {
+        return this.todosService.editTodo(todo).pipe(
+          map((todo) =>
+            TodosActions.editTodosSuccess({
+              todo: todo,
+            })
+          ),
+          catchError((msg) => of(TodosActions.editTodosFailure({ msg })))
         );
       })
     );

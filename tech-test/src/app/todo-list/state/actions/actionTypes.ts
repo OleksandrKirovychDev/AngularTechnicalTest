@@ -10,4 +10,8 @@ export enum ActionTypes {
   DELETE = "[Todo] Delete",
   DELETE_SUCCESS = "[Todo] Delete success",
   DELETE_FAILURE = "[Todo] Delete failure",
+
+  EDIT = "[Todo] Edit",
+  EDIT_SUCCESS = "[Todo] Edit success",
+  EDIT_FAILURE = "[Todo] Edit failure",
 }

@@ -6,7 +6,7 @@
       <mat-card-content>{{ todo.description }}</mat-card-content>
     </mat-card-header>
     <mat-card-actions>
-      <button mat-button>EDIT</button>
+      <button mat-button (click)="onEditTodo(todo.id)">EDIT</button>
       <button mat-button (click)="onDeleteTodo(todo.id)">DELETE</button>
       <button mat-button>FINISHED</button>
     </mat-card-actions>

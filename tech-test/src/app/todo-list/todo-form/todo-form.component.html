@@ -26,5 +26,8 @@
     <mat-label>Description</mat-label>
     <textarea required formControlName="description" matInput></textarea>
   </mat-form-field>
-  <button type="submit" mat-button>ADD</button>
+  <button type="submit" mat-button>{{ isBeingEdited ? "EDIT" : "ADD" }}</button>
+  <button *ngIf="isBeingEdited" (click)="toggleEdit()" mat-button>
+    DISCARD
+  </button>
 </form>
