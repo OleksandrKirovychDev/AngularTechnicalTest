@@ -9,8 +9,8 @@ import { MatIconModule } from "@angular/material/icon";
 
 import { TodoListComponent } from "./todo-list.component";
 import { StoreModule } from "@ngrx/store";
-import { todosReducers } from "./state/reducers/todos.reducer";
-import { TodosEffect } from "./state/effects/todos.effect";
+import { todosReducer } from "./state/reducers/todos.reducer";
+import { TodosEffect } from "./state/effects/todos.effects";
 import { ListComponent } from "./list/list.component";
 import { TodoFormComponent } from "./todo-form/todo-form.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -32,7 +32,7 @@ import { SearchbarComponent } from "./searchbar/searchbar.component";
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
-    StoreModule.forFeature("todos", todosReducers),
+    StoreModule.forFeature("todos", todosReducer),
     EffectsModule.forFeature([TodosEffect]),
   ],
   exports: [TodoListComponent],

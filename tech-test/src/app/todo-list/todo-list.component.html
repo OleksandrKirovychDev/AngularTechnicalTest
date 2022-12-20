@@ -1,15 +1,20 @@
 <div class="container">
-  <app-searchbar (update)="performSearch($event)"></app-searchbar>
-  <app-todo-form
-    [todo]="todo$"
-    (AddTodo)="addTodo($event)"
-    (EditTodo)="editTodo($event)"
-  ></app-todo-form>
-  <app-list
-    class="todo-list"
-    (DeleteTodo)="deleteTodo($event)"
-    (EditTodo)="selectTodo($event)"
-    (ChageStatus)="changeStatus($event)"
-    [todosList]="todosList$ | async"
-  ></app-list>
+  <div class="list">
+    <div class="searchbar">
+      <app-searchbar (update)="performSearch($event)"></app-searchbar>
+    </div>
+    <app-list
+      (DeleteTodo)="deleteTodo($event)"
+      (EditTodo)="selectTodo($event)"
+      (ChageStatus)="changeStatus($event)"
+      [todosList]="todosList$ | async"
+    ></app-list>
+  </div>
+  <div class="form">
+    <app-todo-form
+      (addTodo)="addTodo($event)"
+      (editTodo)="editTodo($event)"
+      [todo]="todo$ | async"
+    ></app-todo-form>
+  </div>
 </div>

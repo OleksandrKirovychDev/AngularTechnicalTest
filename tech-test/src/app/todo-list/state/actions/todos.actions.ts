@@ -49,14 +49,14 @@ export const editTodosFailure = createAction(
 );
 
 export const changeTodoStatus = createAction(
-  ActionTypes.EDIT,
+  ActionTypes.CHANGE_STATUS,
   props<{ todo: ITodo }>()
 );
 export const changeTodoStatusSuccess = createAction(
-  ActionTypes.EDIT_SUCCESS,
+  ActionTypes.CHANGE_STATUS_SUCCESS,
   props<{ todo: ITodo }>()
 );
 export const changeTodoStatusFailure = createAction(
-  ActionTypes.EDIT_SUCCESS,
+  ActionTypes.CHANGE_STATUS_FAILURE,
   props<{ msg: string }>()
 );
