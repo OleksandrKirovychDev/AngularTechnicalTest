@@ -9,13 +9,21 @@ describe("SearchbarComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SearchbarComponent],
-    })
-      .overrideTemplate(SearchbarComponent, "<p>spam</p>")
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SearchbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  describe("Method: ChangeInput()", () => {
+    beforeEach(() => {
+      spyOn(component.update, "emit");
+    });
+    it("should emit a string", () => {
+      component.changeInput("test");
+      expect(component.update.emit).toHaveBeenCalledWith("test");
+    });
   });
 
   it("should create", () => {

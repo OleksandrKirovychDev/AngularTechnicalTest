@@ -73,6 +73,36 @@ describe("TodoFormComponent", () => {
     });
   });
 
+  describe("Method: toggleEdit()", () => {
+    beforeEach(() => {
+      spyOn(component.form, "reset").and.callFake(() => {});
+    });
+    it("should set editmode to !editmode", () => {
+      component.isEditMode = true;
+      component.toggleEdit();
+      expect(component.isEditMode).toBeFalse();
+    });
+    it("should reset the form", () => {
+      component.toggleEdit();
+      expect(component.form.reset).toHaveBeenCalled();
+    });
+  });
+
+  describe("Method: isEditMode()", () => {
+    beforeEach(() => {
+      spyOn(component.addTodo, "emit");
+      spyOn(component.editTodo, "emit");
+    });
+    it("should call addTodo emitter if editMode is false", () => {
+      component.isEditMode = false;
+      component.onSubmit(), expect(component.addTodo.emit).toHaveBeenCalled();
+    });
+    it("should call editTodo emitter if editMode is true", () => {
+      component.isEditMode = true;
+      component.onSubmit(), expect(component.editTodo.emit).toHaveBeenCalled();
+    });
+  });
+
   it("should create", () => {
     expect(component).toBeTruthy();
   });

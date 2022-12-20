@@ -1,6 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { ITodo } from "src/app/shared/models/todo.model";
-import { ActionTypes } from "./actionTypes";
+import { ActionTypes } from "../models/action-types.enum";
 
 export const getTodos = createAction(ActionTypes.GET);
 export const getTodosSuccess = createAction(

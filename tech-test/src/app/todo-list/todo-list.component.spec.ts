@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MockStore, provideMockStore } from "@ngrx/store/testing";
 import { ITodo } from "../shared/models/todo.model";
+import * as TodosSelectors from "./state/selectors/todos.selectors";
+
 import {
   addTodo,
   changeTodoStatus,
@@ -10,11 +12,20 @@ import {
 } from "./state/actions/todos.actions";
 
 import { TodoListComponent } from "./todo-list.component";
+import { createSelector } from "@ngrx/store";
 
 describe("TodoListComponent", () => {
   let component: TodoListComponent;
   let fixture: ComponentFixture<TodoListComponent>;
   let store: MockStore;
+  const mockValue: ITodo[] = [
+    {
+      label: "",
+      description: "",
+      category: "",
+      done: false,
+    },
+  ];
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TodoListComponent],
@@ -43,6 +54,26 @@ describe("TodoListComponent", () => {
     it("should call selectTodos()", () => {
       component.ngOnInit();
       expect(selectTodosSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe("Method: PerformSearch()", () => {
+    beforeEach(() => {
+      spyOn(store, "select").and.callThrough();
+    });
+    it("should call selectir", () => {
+      component.performSearch("test");
+      expect(store.select).toHaveBeenCalled();
+    });
+  });
+
+  describe("Method: selectTodo()", () => {
+    beforeEach(() => {
+      spyOn(store, "select").and.callThrough();
+    });
+    it("should call selectir", () => {
+      component.selectTodo(1);
+      expect(store.select).toHaveBeenCalled();
     });
   });
 
@@ -115,7 +146,9 @@ describe("TodoListComponent", () => {
     });
     it("should dispatch an action", () => {
       component.changeStatus(todo);
-      expect(dispatchSpy).toHaveBeenCalledWith(changeTodoStatus({ todo }));
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        changeTodoStatus({ todo: { ...todo, done: !todo.done } })
+      );
     });
   });
 
