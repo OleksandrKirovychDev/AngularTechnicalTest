@@ -25,10 +25,4 @@ export class TodosService<T> {
   editTodo(todo: ITodo): Observable<T> {
     return this.http.patch<T>(`${environment.BASE_URL}/${todo.id}`, todo);
   }
-
-  changeStatus(todo: ITodo): Observable<T> {
-    return this.http.patch<T>(`${environment.BASE_URL}/${todo.id}`, {
-      done: !todo.done,
-    });
-  }
 }

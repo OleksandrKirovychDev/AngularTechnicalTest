@@ -53,6 +53,6 @@ export class TodoListComponent implements OnInit {
   }
 
   changeStatus(todo: ITodo): void {
-    this.store.dispatch(TodosActions.changeTodoStatus({ todo }));
+    this.store.dispatch(TodosActions.changeTodoStatus({ todo: {...todo, done: !todo.done} }));
   }
 }

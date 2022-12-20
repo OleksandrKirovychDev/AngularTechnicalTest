@@ -61,7 +61,7 @@ export class TodosEffect {
     return this.actions$.pipe(
       ofType(TodosActions.changeTodoStatus),
       mergeMap(({ todo }) => {
-        return this.todosService.changeStatus(todo).pipe(
+        return this.todosService.editTodo(todo).pipe(
           map((todo) =>
             TodosActions.changeTodoStatusSuccess({
               todo: todo,
