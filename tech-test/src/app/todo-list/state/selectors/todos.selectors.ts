@@ -17,5 +17,5 @@ export const selectTodo = (id: number) =>
 
 export const selectSearchedTodos = (label: string) =>
   createSelector(searchedTotosSelector, (state) =>
-    state.todos.filter((todo) => todo.label.includes(label))
+    state.todos.filter((todo) => todo.label.toLowerCase().includes(label.toLowerCase()))
   );

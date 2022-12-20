@@ -1,23 +1,20 @@
-<ng-container *ngIf="todosList">
-  <mat-card *ngFor="let todo of todosList" class="card">
-    <mat-card-header>
-      <mat-card-title
-        ><span
-          [ngStyle]="{
-            color: todo.done ? 'green' : 'black'
-          }"
-          >{{ todo.label }}</span
-        ></mat-card-title
-      >
-      <mat-card-subtitle>{{ todo.category }}</mat-card-subtitle>
-      <mat-card-content>{{ todo.description }}</mat-card-content>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-button (click)="onEditTodo(todo.id)">EDIT</button>
-      <button mat-button (click)="onDeleteTodo(todo.id)">DELETE</button>
-      <button mat-button (click)="changeStatus(todo)">
-        {{ todo.done ? "NOT DONE" : "DONE" }}
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</ng-container>
+<mat-card
+  *ngFor="let todo of todosList"
+  class="card"
+  [ngStyle]="{
+    background: todo.done ? '#90EE90' : 'white'
+  }"
+>
+  <mat-card-header>
+    <mat-card-title>{{ todo.label }}</mat-card-title>
+    <mat-card-subtitle>{{ todo.category }}</mat-card-subtitle>
+    <mat-card-content>{{ todo.description }}</mat-card-content>
+  </mat-card-header>
+  <mat-card-actions>
+    <button mat-button (click)="onEditTodo(todo.id)">EDIT</button>
+    <button mat-button (click)="onDeleteTodo(todo.id)">DELETE</button>
+    <button mat-button (click)="changeStatus(todo)">
+      {{ todo.done ? "NOT DONE" : "DONE" }}
+    </button>
+  </mat-card-actions>
+</mat-card>

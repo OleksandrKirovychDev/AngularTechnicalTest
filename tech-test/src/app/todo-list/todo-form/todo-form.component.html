@@ -4,30 +4,36 @@
   [formGroup]="form"
   class="example-form"
 >
-  <mat-form-field appearance="outline">
-    <mat-label>Label</mat-label>
-    <input
-      required
-      formControlName="label"
-      matInput
-      placeholder="Placeholder"
-    />
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Category</mat-label>
-    <input
-      required
-      formControlName="category"
-      matInput
-      placeholder="Placeholder"
-    />
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Description</mat-label>
-    <textarea required formControlName="description" matInput></textarea>
-  </mat-form-field>
-  <button type="submit" mat-button>{{ isBeingEdited ? "EDIT" : "ADD" }}</button>
-  <button *ngIf="isBeingEdited" (click)="toggleEdit()" mat-button>
-    DISCARD
-  </button>
+  <div class="container">
+    <mat-form-field appearance="outline">
+      <mat-label>Label</mat-label>
+      <input
+        required
+        formControlName="label"
+        matInput
+        placeholder="Placeholder"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <input
+        required
+        formControlName="category"
+        matInput
+        placeholder="Placeholder"
+      />
+    </mat-form-field>
+  </div>
+  <div class="container">
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea required formControlName="description" matInput></textarea>
+    </mat-form-field>
+    <button type="submit" mat-button>
+      {{ isEditMode ? "EDIT" : "ADD" }}
+    </button>
+    <button *ngIf="isEditMode" (click)="toggleEdit()" mat-button>
+      DISCARD
+    </button>
+  </div>
 </form>

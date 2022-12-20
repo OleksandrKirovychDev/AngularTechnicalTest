@@ -1,23 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SearchbarComponent } from './searchbar.component';
+import { SearchbarComponent } from "./searchbar.component";
 
-describe('SearchbarComponent', () => {
+describe("SearchbarComponent", () => {
   let component: SearchbarComponent;
   let fixture: ComponentFixture<SearchbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchbarComponent ]
+      declarations: [SearchbarComponent],
     })
-    .compileComponents();
+      .overrideTemplate(SearchbarComponent, "<p>spam</p>")
+      .compileComponents();
 
     fixture = TestBed.createComponent(SearchbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { Observable, pipe } from "rxjs";
+import { Observable } from "rxjs";
 import { ITodo } from "../shared/models/todo.model";
-import * as TodosActions from "./state/actions/todos.action";
+import * as TodosActions from "./state/actions/todos.actions";
 import {
   selectTodos,
   selectTodo,
   selectSearchedTodos,
-} from "./state/selectors/todos.selector";
+} from "./state/selectors/todos.selectors";
 @Component({
   selector: "app-todo-list",
   templateUrl: "./todo-list.component.html",
@@ -28,6 +28,10 @@ export class TodoListComponent implements OnInit {
     this.todosList$ = this.store.select(selectTodos);
   }
 
+  performSearch(value: string): void {
+    this.todosList$ = this.store.select(selectSearchedTodos(value));
+  }
+
   selectTodo(id: number): void {
     this.todo$ = this.store.select(selectTodo(id));
   }
@@ -37,22 +41,18 @@ export class TodoListComponent implements OnInit {
   }
 
   addTodo(todo: ITodo) {
-    this.store.dispatch(TodosActions.addTodo({ todo: todo }));
+    this.store.dispatch(TodosActions.addTodo({ todo }));
   }
 
   deleteTodo(id: number): void {
-    this.store.dispatch(TodosActions.deleteTodo({ id: id }));
+    this.store.dispatch(TodosActions.deleteTodo({ id }));
   }
 
   editTodo(todo: ITodo): void {
-    this.store.dispatch(TodosActions.editTodo({ todo: todo }));
+    this.store.dispatch(TodosActions.editTodo({ todo }));
   }
 
   changeStatus(todo: ITodo): void {
-    this.store.dispatch(TodosActions.changeTodoStatus({ todo: todo }));
-  }
-
-  performSearch(value: string): void {
-    this.todosList$ = this.store.select(selectSearchedTodos(value));
+    this.store.dispatch(TodosActions.changeTodoStatus({ todo }));
   }
 }

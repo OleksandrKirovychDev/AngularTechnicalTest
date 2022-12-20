@@ -1,6 +1,12 @@
-.todo-list {
+.container {
   display: flex;
+  align-items: stretch;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.list {
+  max-width: 500px;
+  flex: 1;
 }

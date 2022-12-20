@@ -3,12 +3,10 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   Output,
 } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { Observable, Subject, takeUntil } from "rxjs";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ITodo } from "src/app/shared/models/todo.model";
 
 @Component({
@@ -16,12 +14,12 @@ import { ITodo } from "src/app/shared/models/todo.model";
   templateUrl: "./todo-form.component.html",
   styleUrls: ["./todo-form.component.scss"],
 })
-export class TodoFormComponent implements OnInit, OnChanges, OnDestroy {
-  @Output() AddTodo = new EventEmitter<ITodo>();
-  @Output() EditTodo = new EventEmitter<ITodo>();
-  @Input() todo: Observable<ITodo>;
-  @Input() isBeingEdited: boolean;
-  destroy$: Subject<boolean> = new Subject<boolean>();
+export class TodoFormComponent implements OnInit, OnChanges {
+  @Input() todo: ITodo;
+  @Input() isEditMode: boolean = false;
+  @Output() addTodo = new EventEmitter<ITodo>();
+  @Output() editTodo = new EventEmitter<ITodo>();
+
   form: FormGroup;
 
   constructor(private fb: FormBuilder) {}
@@ -32,52 +30,42 @@ export class TodoFormComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.initForm();
-    this.isBeingEdited = false;
+    this.isEditMode = false;
   }
 
   initForm(): void {
     this.form = this.fb.group({
-      label: [""],
-      description: [""],
-      category: [""],
+      label: ["", Validators.required],
+      description: ["", Validators.required],
+      category: ["", Validators.required],
       id: [""],
-      done: false,
+      done: [false],
     });
   }
 
   updateForm() {
-    this.isBeingEdited = true;
-    this.todo.pipe(takeUntil(this.destroy$)).subscribe((res) => {
-      console.log(res);
-      this.form.patchValue({
-        label: res.label,
-        description: res.description,
-        category: res.category,
-        id: res.id,
-      });
+    this.isEditMode = true;
+    this.form.patchValue({
+      ...this.todo,
     });
   }
 
   toggleEdit(): void {
-    this.isBeingEdited = !this.isBeingEdited;
+    this.isEditMode = !this.isEditMode;
     this.form.patchValue({
       label: "",
       description: "",
       category: "",
       id: "",
+      done: false,
     });
   }
 
   onSubmit(): void {
-    if (!this.isBeingEdited) {
-      this.AddTodo.emit(this.form.value);
+    if (!this.isEditMode) {
+      this.addTodo.emit(this.form.value);
     } else {
-      this.EditTodo.emit(this.form.value);
+      this.editTodo.emit(this.form.value);
     }
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
   }
 }

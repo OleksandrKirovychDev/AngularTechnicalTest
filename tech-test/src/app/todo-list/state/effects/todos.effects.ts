@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, mergeMap, of } from "rxjs";
 import { ITodo } from "src/app/shared/models/todo.model";
 import { TodosService } from "../../services/todos.service";
-import * as TodosActions from "../actions/todos.action";
+import * as TodosActions from "../actions/todos.actions";
 
 @Injectable({
   providedIn: "root",
@@ -61,7 +61,7 @@ export class TodosEffect {
     return this.actions$.pipe(
       ofType(TodosActions.changeTodoStatus),
       mergeMap(({ todo }) => {
-        return this.todosService.editTodo(todo).pipe(
+        return this.todosService.changeStatus(todo).pipe(
           map((todo) =>
             TodosActions.changeTodoStatusSuccess({
               todo: todo,

@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { ITodoState } from "src/app/shared/models/todo.model";
-import * as TodosActions from "../actions/todos.action";
+import * as TodosActions from "../actions/todos.actions";
 
 export const initialState: ITodoState = {
   todos: [],
@@ -8,7 +8,7 @@ export const initialState: ITodoState = {
   error: "",
 };
 
-export const todosReducers = createReducer(
+export const todosReducer = createReducer(
   initialState,
   on(TodosActions.getTodos, (state) => ({
     ...state,
@@ -84,7 +84,7 @@ export const todosReducers = createReducer(
     ...state,
     todos: [
       ...state.todos.map((t) =>
-        t.id !== todo.id ? t : { ...todo, done: !todo.done }
+        t.id !== todo.id ? t : { ...todo, done: todo.done }
       ),
     ],
     isLoading: false,
