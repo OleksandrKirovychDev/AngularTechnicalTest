@@ -52,13 +52,7 @@ export class TodoFormComponent implements OnInit, OnChanges {
 
   toggleEdit(): void {
     this.isEditMode = !this.isEditMode;
-    this.form.patchValue({
-      label: "",
-      description: "",
-      category: "",
-      id: "",
-      done: false,
-    });
+    this.form.reset()
   }
 
   onSubmit(): void {

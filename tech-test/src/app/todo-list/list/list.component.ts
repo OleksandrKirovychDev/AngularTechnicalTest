@@ -7,22 +7,22 @@ import { ITodo } from "src/app/shared/models/todo.model";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent {
-  @Output() DeleteTodo = new EventEmitter<number>();
-  @Output() EditTodo = new EventEmitter<number>();
-  @Output() ChageStatus = new EventEmitter<ITodo>();
+  @Output() deleteTodo = new EventEmitter<number>();
+  @Output() editTodo = new EventEmitter<number>();
+  @Output() chageStatus = new EventEmitter<ITodo>();
 
   @Input() todosList: ITodo[];
   constructor() {}
 
   onDeleteTodo(id: number): void {
-    this.DeleteTodo.emit(id);
+    this.deleteTodo.emit(id);
   }
 
   onEditTodo(id: number) {
-    this.EditTodo.emit(id);
+    this.editTodo.emit(id);
   }
 
   changeStatus(todo: ITodo): void {
-    this.ChageStatus.emit(todo);
+    this.chageStatus.emit(todo);
   }
 }

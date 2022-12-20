@@ -1,10 +1,4 @@
-<mat-card
-  *ngFor="let todo of todosList"
-  class="card"
-  [ngStyle]="{
-    background: todo.done ? '#90EE90' : 'white'
-  }"
->
+<mat-card *ngFor="let todo of todosList" class="card" [class.done]="todo.done">
   <mat-card-header>
     <mat-card-title>{{ todo.label }}</mat-card-title>
     <mat-card-subtitle>{{ todo.category }}</mat-card-subtitle>
