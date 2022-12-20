@@ -1,6 +1,5 @@
 import { createSelector } from "@ngrx/store";
-import { IAppState } from "src/app/shared/models/appState.model";
-
+import { IAppState } from "../models/state.models";
 const todosSelector = (state: IAppState) => state.todos;
 const todoSelector = (state: IAppState) => state.todos;
 const searchedTotosSelector = (state: IAppState) => state.todos;
@@ -17,5 +16,7 @@ export const selectTodo = (id: number) =>
 
 export const selectSearchedTodos = (label: string) =>
   createSelector(searchedTotosSelector, (state) =>
-    state.todos.filter((todo) => todo.label.toLowerCase().includes(label.toLowerCase()))
+    state.todos.filter((todo) =>
+      todo.label.toLowerCase().includes(label.toLowerCase())
+    )
   );

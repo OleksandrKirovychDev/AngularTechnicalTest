@@ -5,9 +5,3 @@ export interface ITodo {
   category: string;
   done: boolean;
 }
-
-export interface ITodoState {
-  todos: Array<ITodo>;
-  isLoading: boolean;
-  error: string;
-}

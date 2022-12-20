@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { ITodoState } from "src/app/shared/models/todo.model";
+import { ITodoState } from "../models/state.models";
 import * as TodosActions from "../actions/todos.actions";
 
 export const initialState: ITodoState = {

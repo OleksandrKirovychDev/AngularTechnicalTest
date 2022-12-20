@@ -19,7 +19,9 @@ describe("TodoListComponent", () => {
     await TestBed.configureTestingModule({
       declarations: [TodoListComponent],
       providers: [provideMockStore({})],
-    }).compileComponents();
+    })
+      .overrideTemplate(TodoListComponent, "<p>spam</p>")
+      .compileComponents();
 
     fixture = TestBed.createComponent(TodoListComponent);
     component = fixture.componentInstance;

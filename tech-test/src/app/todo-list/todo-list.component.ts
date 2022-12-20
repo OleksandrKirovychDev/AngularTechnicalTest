@@ -14,10 +14,10 @@ import {
   styleUrls: ["./todo-list.component.scss"],
 })
 export class TodoListComponent implements OnInit {
-  constructor(private store: Store) {}
   todosList$: Observable<ITodo[]>;
   todo$: Observable<ITodo>;
-  todoToEdit: ITodo;
+
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.getTodos();

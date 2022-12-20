@@ -4,17 +4,17 @@
       <app-searchbar (update)="performSearch($event)"></app-searchbar>
     </div>
     <app-list
-      (DeleteTodo)="deleteTodo($event)"
-      (EditTodo)="selectTodo($event)"
-      (ChageStatus)="changeStatus($event)"
       [todosList]="todosList$ | async"
+      (deleteTodo)="deleteTodo($event)"
+      (editTodo)="selectTodo($event)"
+      (chageStatus)="changeStatus($event)"
     ></app-list>
   </div>
   <div class="form">
     <app-todo-form
+      [todo]="todo$ | async"
       (addTodo)="addTodo($event)"
       (editTodo)="editTodo($event)"
-      [todo]="todo$ | async"
     ></app-todo-form>
   </div>
 </div>
